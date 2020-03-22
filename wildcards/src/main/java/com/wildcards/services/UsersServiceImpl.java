@@ -60,7 +60,11 @@ public class UsersServiceImpl implements UsersService {
 		return previousUser;
 	}
 
-	
+	@Override
+	public Users loginUsers(String username, String password) {
+		// TODO Auto-generated method stub
+		return ud.findByUsernameAndPassword(username, password);
+	}
 	
 
 

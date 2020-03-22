@@ -13,6 +13,8 @@ public interface UsersService {
 	public Users getUserByID(int id);
 	
 	public Users updateUsers(Users u);
+	
+	public Users loginUsers(String username, String password);
 
 
 

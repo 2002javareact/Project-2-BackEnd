@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wildcards.dtos.LoginCredentials;
 import com.wildcards.models.Users;
 import com.wildcards.services.UsersService;
 
@@ -57,6 +58,11 @@ public class UsersController {
 			return new ResponseEntity("userId must not be 0", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Users>(us.updateUsers(u), HttpStatus.CREATED);
+	}
+	
+	@PostMapping("login")
+	public ResponseEntity<Users> login(@RequestBody LoginCredentials cred){
+		return new ResponseEntity(us.loginUsers(cred.getUsername(), cred.getPassword()), HttpStatus.OK);
 	}
 	
 
