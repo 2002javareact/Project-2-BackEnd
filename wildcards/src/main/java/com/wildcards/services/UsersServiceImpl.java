@@ -24,7 +24,12 @@ public class UsersServiceImpl implements UsersService {
 		return ud.findAll();
 	}
 
-
+	@Override
+	public Users createUsers(Users u) {
+		// TODO Auto-generated method stub
+		return ud.save(u);
+	}
+	
 
 
 }
