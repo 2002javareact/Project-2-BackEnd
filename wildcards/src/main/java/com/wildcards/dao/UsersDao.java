@@ -7,5 +7,8 @@ import com.wildcards.models.Users;
 
 @Repository
 public interface UsersDao extends JpaRepository<Users, Integer> {
+	
+	public Users findByUsernameAndPassword(String username, String password);
+
 
 }

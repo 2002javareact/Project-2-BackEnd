@@ -31,5 +31,37 @@ public class UsersServiceImpl implements UsersService {
 	}
 	
 
+	@Override
+	public Users getUserByID(int id) {
+		// TODO Auto-generated method stub
+		return ud.getOne(id);
+	}
+
+	@Override
+	public Users updateUsers(Users u) {
+		// TODO Auto-generated method stub
+		Users previousUser = ud.getOne(u.getUserId());
+		if(u.getFirstName() != null) {
+			previousUser.setFirstName(u.getFirstName());
+		}
+		if(u.getLastName() != null) {
+			previousUser.setLastName(u.getLastName());
+		}
+		if(u.getUsername() != null) {
+			previousUser.setUsername(u.getUsername());
+		}
+		if(u.getPassword() != null) {
+			previousUser.setPassword(u.getPassword());
+		}
+		
+		if(u.getEmail() != null) {
+			previousUser.setEmail(u.getEmail());
+		}
+		return previousUser;
+	}
+
+	
+	
+
 
 }
