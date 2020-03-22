@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.example.wildcards;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WildcardsApplicationTests {
+class Project2ApplicationTests {
 
 	@Test
 	void contextLoads() {
