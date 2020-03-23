@@ -21,7 +21,7 @@ public class ShoppingCart {
 	@Column(name = "cart_id")
 	private int cartId;
 	
-	@OneToOne(mappedBy = "sc", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "shoppingCart", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference
 	private Users u;
 	

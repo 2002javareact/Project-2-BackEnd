@@ -24,15 +24,15 @@ public class Users {
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	//used to specify the foreign key column
 	@JoinColumn(name = "shoppingCart", referencedColumnName = "cart_id")
-	private ShoppingCart sc;
+	private ShoppingCart shoppingCart;
 	
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "address", referencedColumnName = "address_id")
-	private Address ad;
+	private Address address;
 	
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "paymentInfo", referencedColumnName = "paymentInfo_id")
-	private PaymentInfo pi;
+	private PaymentInfo paymentInfo;
 	
 	
 	@Column(unique = true)
@@ -58,28 +58,28 @@ public class Users {
 		this.userId = userId;
 	}
 
-	public ShoppingCart getSc() {
-		return sc;
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
 	}
 
-	public void setSc(ShoppingCart sc) {
-		this.sc = sc;
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
 	}
 
-	public Address getAd() {
-		return ad;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAd(Address ad) {
-		this.ad = ad;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public PaymentInfo getPi() {
-		return pi;
+	public PaymentInfo getPaymentInfo() {
+		return paymentInfo;
 	}
 
-	public void setPi(PaymentInfo pi) {
-		this.pi = pi;
+	public void setPaymentInfo(PaymentInfo paymentInfo) {
+		this.paymentInfo = paymentInfo;
 	}
 
 	public String getUsername() {
@@ -126,13 +126,13 @@ public class Users {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ad == null) ? 0 : ad.hashCode());
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((pi == null) ? 0 : pi.hashCode());
-		result = prime * result + ((sc == null) ? 0 : sc.hashCode());
+		result = prime * result + ((paymentInfo == null) ? 0 : paymentInfo.hashCode());
+		result = prime * result + ((shoppingCart == null) ? 0 : shoppingCart.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -147,10 +147,10 @@ public class Users {
 		if (getClass() != obj.getClass())
 			return false;
 		Users other = (Users) obj;
-		if (ad == null) {
-			if (other.ad != null)
+		if (address == null) {
+			if (other.address != null)
 				return false;
-		} else if (!ad.equals(other.ad))
+		} else if (!address.equals(other.address))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -172,15 +172,15 @@ public class Users {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (pi == null) {
-			if (other.pi != null)
+		if (paymentInfo == null) {
+			if (other.paymentInfo != null)
 				return false;
-		} else if (!pi.equals(other.pi))
+		} else if (!paymentInfo.equals(other.paymentInfo))
 			return false;
-		if (sc == null) {
-			if (other.sc != null)
+		if (shoppingCart == null) {
+			if (other.shoppingCart != null)
 				return false;
-		} else if (!sc.equals(other.sc))
+		} else if (!shoppingCart.equals(other.shoppingCart))
 			return false;
 		if (userId != other.userId)
 			return false;
@@ -194,18 +194,18 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", sc=" + sc + ", ad=" + ad + ", pi=" + pi + ", username=" + username
+		return "Users [userId=" + userId + ", shoppingCart=" + shoppingCart + ", address=" + address + ", paymentInfo=" + paymentInfo + ", username=" + username
 				+ ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ "]";
 	}
 
-	public Users(int userId, ShoppingCart sc, Address ad, PaymentInfo pi, String username, String password,
+	public Users(int userId, ShoppingCart shoppingCart, Address address, PaymentInfo paymentInfo, String username, String password,
 			String firstName, String lastName, String email) {
 		super();
 		this.userId = userId;
-		this.sc = sc;
-		this.ad = ad;
-		this.pi = pi;
+		this.shoppingCart = shoppingCart;
+		this.address = address;
+		this.paymentInfo = paymentInfo;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -218,12 +218,5 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-
-	
-	
-
-	
-
 
 }

@@ -21,7 +21,7 @@ public class PaymentInfo {
 	@Column(name = "paymentInfo_id")
 	private int paymentInfoId;
 	
-	@OneToOne(mappedBy = "pi", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "paymentInfo", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference
 	private Users u;
 	
@@ -30,5 +30,98 @@ public class PaymentInfo {
 	
 	@Column
 	private String cardNumber;
+
+	public int getPaymentInfoId() {
+		return paymentInfoId;
+	}
+
+	public void setPaymentInfoId(int paymentInfoId) {
+		this.paymentInfoId = paymentInfoId;
+	}
+
+	public Users getU() {
+		return u;
+	}
+
+	public void setU(Users u) {
+		this.u = u;
+	}
+
+	public String getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(String billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((billingAddress == null) ? 0 : billingAddress.hashCode());
+		result = prime * result + ((cardNumber == null) ? 0 : cardNumber.hashCode());
+		result = prime * result + paymentInfoId;
+		result = prime * result + ((u == null) ? 0 : u.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PaymentInfo other = (PaymentInfo) obj;
+		if (billingAddress == null) {
+			if (other.billingAddress != null)
+				return false;
+		} else if (!billingAddress.equals(other.billingAddress))
+			return false;
+		if (cardNumber == null) {
+			if (other.cardNumber != null)
+				return false;
+		} else if (!cardNumber.equals(other.cardNumber))
+			return false;
+		if (paymentInfoId != other.paymentInfoId)
+			return false;
+		if (u == null) {
+			if (other.u != null)
+				return false;
+		} else if (!u.equals(other.u))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "PaymentInfo [paymentInfoId=" + paymentInfoId + ", u=" + u + ", billingAddress=" + billingAddress
+				+ ", cardNumber=" + cardNumber + "]";
+	}
+
+	public PaymentInfo(int paymentInfoId, Users u, String billingAddress, String cardNumber) {
+		super();
+		this.paymentInfoId = paymentInfoId;
+		this.u = u;
+		this.billingAddress = billingAddress;
+		this.cardNumber = cardNumber;
+	}
+
+	public PaymentInfo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
 }

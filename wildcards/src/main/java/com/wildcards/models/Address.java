@@ -21,7 +21,7 @@ public class Address {
 	@Column(name = "address_id")
 	private int addressId;
 	
-	@OneToOne(mappedBy = "ad", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "address", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference
 	private Users u;
 	
