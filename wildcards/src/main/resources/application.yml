@@ -4,6 +4,18 @@ server:
 spring:
   application:
     name: wildcards
+  mail:
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    username: ${EMAIL_USER}
+    password: ${EMAIL_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          starttls:
+            enable: true
   datasource:
     driver-class-name: org.postgresql.Driver
     initialization-mode: never
@@ -18,4 +30,6 @@ spring:
     properties:
       hibernate:
         default-schema: ${DB_SCHEMA}
-    show-sql: true  
+    show-sql: true 
+    
+    

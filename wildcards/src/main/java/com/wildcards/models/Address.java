@@ -25,66 +25,86 @@ public class Address {
 	@JsonBackReference
 	private Users u;
 	
-	
-	@Column
 	private String streetAddress;
 	
-	@Column
 	private String cityName;
 	
-	@Column
 	private String state;
 	
-	@Column
+	private String country;
+	
 	private int zipcode;
+
 
 	public int getAddressId() {
 		return addressId;
 	}
 
+
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
+
 
 	public Users getU() {
 		return u;
 	}
 
+
 	public void setU(Users u) {
 		this.u = u;
 	}
+
 
 	public String getStreetAddress() {
 		return streetAddress;
 	}
 
+
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
 	}
+
 
 	public String getCityName() {
 		return cityName;
 	}
 
+
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
+
 
 	public String getState() {
 		return state;
 	}
 
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 
 	public int getZipcode() {
 		return zipcode;
 	}
 
+
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -92,12 +112,14 @@ public class Address {
 		int result = 1;
 		result = prime * result + addressId;
 		result = prime * result + ((cityName == null) ? 0 : cityName.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + ((streetAddress == null) ? 0 : streetAddress.hashCode());
 		result = prime * result + ((u == null) ? 0 : u.hashCode());
 		result = prime * result + zipcode;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -114,6 +136,11 @@ public class Address {
 			if (other.cityName != null)
 				return false;
 		} else if (!cityName.equals(other.cityName))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
 			return false;
 		if (state == null) {
 			if (other.state != null)
@@ -135,27 +162,35 @@ public class Address {
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", u=" + u + ", streetAddress=" + streetAddress + ", cityName="
-				+ cityName + ", state=" + state + ", zipcode=" + zipcode + "]";
+				+ cityName + ", state=" + state + ", country=" + country + ", zipcode=" + zipcode + "]";
 	}
 
-	public Address(int addressId, Users u, String streetAddress, String cityName, String state, int zipcode) {
+
+	public Address(int addressId, Users u, String streetAddress, String cityName, String state, String country,
+			int zipcode) {
 		super();
 		this.addressId = addressId;
 		this.u = u;
 		this.streetAddress = streetAddress;
 		this.cityName = cityName;
 		this.state = state;
+		this.country = country;
 		this.zipcode = zipcode;
 	}
+
 
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
+	
 	
 	
 	

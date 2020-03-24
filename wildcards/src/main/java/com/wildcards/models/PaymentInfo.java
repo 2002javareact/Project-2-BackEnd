@@ -29,7 +29,7 @@ public class PaymentInfo {
 	private String billingAddress;
 	
 	@Column
-	private String cardNumber;
+	private Long cardNumber;
 
 	public int getPaymentInfoId() {
 		return paymentInfoId;
@@ -55,11 +55,11 @@ public class PaymentInfo {
 		this.billingAddress = billingAddress;
 	}
 
-	public String getCardNumber() {
+	public Long getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(String cardNumber) {
+	public void setCardNumber(Long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
@@ -109,7 +109,7 @@ public class PaymentInfo {
 				+ ", cardNumber=" + cardNumber + "]";
 	}
 
-	public PaymentInfo(int paymentInfoId, Users u, String billingAddress, String cardNumber) {
+	public PaymentInfo(int paymentInfoId, Users u, String billingAddress, Long cardNumber) {
 		super();
 		this.paymentInfoId = paymentInfoId;
 		this.u = u;
