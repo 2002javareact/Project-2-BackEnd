@@ -5,6 +5,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+//THIS FILE WILL SEND EMAILS OF DIFFERENT TYPES
+
+
 @Service("emailService")
 public class EmailService {
 	
@@ -13,7 +16,7 @@ public class EmailService {
       
     @Autowired
     private SimpleMailMessage preConfiguredMessage;
-  
+    
     /**
      * This method will send compose and send the message 
      * */
@@ -36,5 +39,16 @@ public class EmailService {
         mailMessage.setText(message);
         mailSender.send(mailMessage);
     }
+        
+    public void sendSignUpEmail(String to, String confirmation) {
+    	
+    	SimpleMailMessage signupMessage = new SimpleMailMessage();
+    	signupMessage.setTo(to);
+    	signupMessage.setText(confirmation);
+    	mailSender.send(signupMessage);
+    			
+    }
+
+	
 
 }

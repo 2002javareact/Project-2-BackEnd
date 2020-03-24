@@ -4,18 +4,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 
+
+//TEMPLATE EMAIL 
+
 @Configuration
 public class EmailConfiguration {
 	  
 	@Bean
-	    public SimpleMailMessage emailTemplate()
-	    {
+	    public SimpleMailMessage emailTemplate() {
 	        SimpleMailMessage message = new SimpleMailMessage();
-	        message.setTo("ramelhaines25@gmail.com");
-	        message.setFrom("admin@gmail.com");
+	        message.setTo("random@me.com");
+	        message.setFrom("ramelhaines25@gmail.com");
 	        message.setSubject("Important email");
 	        message.setText("FATAL - Application crash. Save your job !!");
 	        return message;
 	    }
 
+	
 }
