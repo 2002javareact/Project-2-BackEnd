@@ -11,7 +11,7 @@ public class EmailConfiguration {
 	    public SimpleMailMessage emailTemplate()
 	    {
 	        SimpleMailMessage message = new SimpleMailMessage();
-	        message.setTo("ramelhaines25@gmail.com");
+	        message.setTo("wantahmad@gmail.com");
 	        message.setFrom("admin@gmail.com");
 	        message.setSubject("Important email");
 	        message.setText("FATAL - Application crash. Save your job !!");

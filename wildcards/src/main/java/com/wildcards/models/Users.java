@@ -1,5 +1,7 @@
 package com.wildcards.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,8 +21,13 @@ public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
 	@Column(name = "user_id")
 	private int userId;
+	
+	@OneToMany(mappedBy = "users")
+	private List<Order> userOrders;
+	
 	
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	//used to specify the foreign key column
@@ -56,6 +64,14 @@ public class Users {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public List<Order> getUserOrders() {
+		return userOrders;
+	}
+
+	public void setUserOrders(List<Order> userOrders) {
+		this.userOrders = userOrders;
 	}
 
 	public ShoppingCart getShoppingCart() {
@@ -134,6 +150,7 @@ public class Users {
 		result = prime * result + ((paymentInfo == null) ? 0 : paymentInfo.hashCode());
 		result = prime * result + ((shoppingCart == null) ? 0 : shoppingCart.hashCode());
 		result = prime * result + userId;
+		result = prime * result + ((userOrders == null) ? 0 : userOrders.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -184,6 +201,11 @@ public class Users {
 			return false;
 		if (userId != other.userId)
 			return false;
+		if (userOrders == null) {
+			if (other.userOrders != null)
+				return false;
+		} else if (!userOrders.equals(other.userOrders))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -194,15 +216,17 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", shoppingCart=" + shoppingCart + ", address=" + address + ", paymentInfo=" + paymentInfo + ", username=" + username
-				+ ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ "]";
+		return "Users [userId=" + userId + ", userOrders=" + userOrders + ", shoppingCart=" + shoppingCart
+				+ ", address=" + address + ", paymentInfo=" + paymentInfo + ", username=" + username + ", password="
+				+ password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
-	public Users(int userId, ShoppingCart shoppingCart, Address address, PaymentInfo paymentInfo, String username, String password,
-			String firstName, String lastName, String email) {
+	public Users(int userId, List<Order> userOrders, ShoppingCart shoppingCart, Address address,
+			PaymentInfo paymentInfo, String username, String password, String firstName, String lastName,
+			String email) {
 		super();
 		this.userId = userId;
+		this.userOrders = userOrders;
 		this.shoppingCart = shoppingCart;
 		this.address = address;
 		this.paymentInfo = paymentInfo;
@@ -217,6 +241,8 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 
 }
