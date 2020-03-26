@@ -8,39 +8,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
-@Entity 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Inventory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "item_id")
+	@Column(name = "item_id")
 	private int itemId;
-	
-	@Column (name = "item_description")
+
+	@Column(name = "item_description")
 	private String itemDescription;
-	
-	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "type", nullable = false, referencedColumnName = "type_id")
 	@JsonBackReference
 	private Type type;
-	
-	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "brand", nullable = false, referencedColumnName = "brand_id")
 	@JsonManagedReference
 	private Brand brand;
-	
+
 	@Column
 	private double price;
-	
+
 	@Column
 	private int stock;
 
@@ -161,5 +158,4 @@ public class Inventory {
 				+ brand + ", price=" + price + ", stock=" + stock + "]";
 	}
 
-	
 }
