@@ -1,4 +1,5 @@
 package com.wildcards.models;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,20 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //Order
 //Order_id (PK)
 //User (linked to user table by user_id) 	(FK)
@@ -29,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //Order_status (linked to the status table by status_id) 	(FK)
 
 @Entity
-@Table(name="order_table")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "order_table")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Order {
 
 	@Id
@@ -38,28 +29,23 @@ public class Order {
 	@Column(name = "order_id")
 	private int orderId;
 
-//foreign key for user table, FK
-	//@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
+	// foreign key for user table, FK
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "users", referencedColumnName = "user_id")
-	//@JsonBackReference
+	// @JsonBackReference
 	private Users users;
 
 	@Column(name = "total_price")
 	private int totalPrice;
 
-
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_status", referencedColumnName = "status_id")
 	private OrderStatus orderStatus;
-
 
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Order(int orderId, Users users, int totalPrice, OrderStatus orderStatus) {
 		super();
@@ -69,46 +55,37 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-
 	public int getOrderId() {
 		return orderId;
 	}
-
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
-
 	public Users getUsers() {
 		return users;
 	}
-
 
 	public void setUsers(Users users) {
 		this.users = users;
 	}
 
-
 	public int getTotalPrice() {
 		return totalPrice;
 	}
-
 
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
-
 	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -120,7 +97,6 @@ public class Order {
 		result = prime * result + ((users == null) ? 0 : users.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -148,13 +124,10 @@ public class Order {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Order [orderId=" + orderId + ", users=" + users + ", totalPrice=" + totalPrice + ", orderStatus="
 				+ orderStatus + "]";
 	}
-	
-	
 
 }

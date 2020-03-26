@@ -1,9 +1,6 @@
 package com.wildcards.controllers;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import com.wildcards.dtos.GetByTypeId;
 import com.wildcards.models.Inventory;
 import com.wildcards.services.InventoryService;
 
@@ -25,38 +18,40 @@ import com.wildcards.services.InventoryService;
 public class InventoryController {
 
 	private InventoryService is;
-	
+
 	@Autowired
 	public InventoryController(InventoryService is) {
 		this.is = is;
 	}
-	//Get All Inventory
+
+	// Get All Inventory
 	@GetMapping
-	public ResponseEntity<List<Inventory>> getAllInventory(){
-		
+	public ResponseEntity<List<Inventory>> getAllInventory() {
+
 		return new ResponseEntity(is.getAllInventory(), HttpStatus.OK);
 	}
-	//Create New Inventory
+
+	// Create New Inventory
 	@PostMapping
 	public ResponseEntity<Inventory> createNewItem(@RequestBody Inventory i) {
-		if(i.getItemId() != 0) {
+		if (i.getItemId() != 0) {
 			return new ResponseEntity("Id must be 0", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity(is.createNewItem(i), HttpStatus.CREATED);
 	}
+
 	// Search for item by type
 	@GetMapping("{typeId}")
-	public ResponseEntity<List<Inventory>> getByTypeId(@PathVariable int typeId){
-		//HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		List<Inventory> i  = is.getByTypeId(typeId);
+	public ResponseEntity<List<Inventory>> getByTypeId(@PathVariable int typeId) {
+		// HttpServletRequest req = ((ServletRequestAttributes)
+		// RequestContextHolder.getRequestAttributes()).getRequest();
+		List<Inventory> i = is.getByTypeId(typeId);
 		// add an object to the session
-		//req.getSession().setAttribute("inventory", i);
-		if(typeId == 0) {
+		// req.getSession().setAttribute("inventory", i);
+		if (typeId == 0) {
 			return new ResponseEntity("TypeId must not be 0", HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity(is.getByTypeId(typeId), HttpStatus.OK);
 	}
-	
-}
-	
 
+}
