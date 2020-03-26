@@ -45,120 +45,116 @@ public class Order {
 	@JoinColumn(name = "users", referencedColumnName = "user_id")
 	//@JsonBackReference
 	private Users users;
-	
-
-
 
 	@Column(name = "total_price")
 	private int totalPrice;
 
 
-	//@ManyToOne
-	//@JoinColumn(name = "order_status", referencedColumnName = "status_id")
-@Column(name = "order_status")
-private String orderStatus;
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_status", referencedColumnName = "status_id")
+	private OrderStatus orderStatus;
 
 
-public int getOrderId() {
-	return orderId;
-}
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 
-public void setOrderId(int orderId) {
-	this.orderId = orderId;
-}
+	public Order(int orderId, Users users, int totalPrice, OrderStatus orderStatus) {
+		super();
+		this.orderId = orderId;
+		this.users = users;
+		this.totalPrice = totalPrice;
+		this.orderStatus = orderStatus;
+	}
 
 
-public Users getUsers() {
-	return users;
-}
+	public int getOrderId() {
+		return orderId;
+	}
 
 
-public void setUsers(Users users) {
-	this.users = users;
-}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
 
-public int getTotalPrice() {
-	return totalPrice;
-}
+	public Users getUsers() {
+		return users;
+	}
 
 
-public void setTotalPrice(int totalPrice) {
-	this.totalPrice = totalPrice;
-}
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
 
-public String getOrderStatus() {
-	return orderStatus;
-}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
 
 
-public void setOrderStatus(String orderStatus) {
-	this.orderStatus = orderStatus;
-}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
 
-@Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + orderId;
-	result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
-	result = prime * result + totalPrice;
-	result = prime * result + ((users == null) ? 0 : users.hashCode());
-	return result;
-}
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
 
 
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + orderId;
+		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
+		result = prime * result + totalPrice;
+		result = prime * result + ((users == null) ? 0 : users.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (orderId != other.orderId)
+			return false;
+		if (orderStatus == null) {
+			if (other.orderStatus != null)
+				return false;
+		} else if (!orderStatus.equals(other.orderStatus))
+			return false;
+		if (totalPrice != other.totalPrice)
+			return false;
+		if (users == null) {
+			if (other.users != null)
+				return false;
+		} else if (!users.equals(other.users))
+			return false;
 		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Order other = (Order) obj;
-	if (orderId != other.orderId)
-		return false;
-	if (orderStatus == null) {
-		if (other.orderStatus != null)
-			return false;
-	} else if (!orderStatus.equals(other.orderStatus))
-		return false;
-	if (totalPrice != other.totalPrice)
-		return false;
-	if (users == null) {
-		if (other.users != null)
-			return false;
-	} else if (!users.equals(other.users))
-		return false;
-	return true;
-}
+	}
 
 
-@Override
-public String toString() {
-	return "Order [orderId=" + orderId + ", users=" + users + ", totalPrice=" + totalPrice + ", orderStatus="
-			+ orderStatus + "]";
-}
-
-
-public Order(int orderId, Users users, int totalPrice, String orderStatus) {
-	super();
-	this.orderId = orderId;
-	this.users = users;
-	this.totalPrice = totalPrice;
-	this.orderStatus = orderStatus;
-}
-
-
-public Order() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-
-
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", users=" + users + ", totalPrice=" + totalPrice + ", orderStatus="
+				+ orderStatus + "]";
+	}
+	
+	
 
 }
