@@ -11,23 +11,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class WildcardsApplication implements CommandLineRunner{
+public class WildcardsApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WildcardsApplication.class, args);
 	}
 	
-	@Autowired
-    private EmailService emailService;
-
-	@Override
-	public void run(String... args) throws Exception  {
-		// TODO Auto-generated method stub
-		emailService.sendMail("lokeshgupta1981@gmail.com", "Hi", "Ho ho ho");
-        
-        emailService.sendPreConfiguredMail("Ho ho ho");
-	}
-	
+	//use this code below if I want to test out other emails.
+//	
+//	@Autowired
+//    private EmailService emailService;
+//
+//	@Override
+//	public void run(String... args) throws Exception  {
+//		// TODO Auto-generated method stub
+//		emailService.sendMail("lokeshgupta1981@gmail.com", "Hi", "Ho ho ho");
+//        
+//        emailService.sendPreConfiguredMail("sent from application");
+//        
+//        emailService.sendSignUpEmail("ramel.haines@daemen.edu", "welcome to liq and win");
+//	}
+//	
 	
 
 }

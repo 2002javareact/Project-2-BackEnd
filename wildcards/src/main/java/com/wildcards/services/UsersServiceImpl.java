@@ -12,7 +12,11 @@ import com.wildcards.models.Users;
 @Service
 public class UsersServiceImpl implements UsersService {
 	
+	
 	private UsersDao ud;
+	
+	@Autowired
+	EmailService es;
 	
 	@Autowired
 	public UsersServiceImpl(UsersDao ud) {
@@ -26,8 +30,17 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public Users createUsers(Users u) {
-		// TODO Auto-generated method stub
+		es.sendSignUpEmail(u.getEmail(), "This is a test email for your website");
 		return ud.save(u);
+		//return u
+	
+		//this service will send a request to emailService 
+		//save the user
+		//if it succeeds then call the emailservice with new new users email
+		//then return user
+		
+		// TODO Auto-generated method stub
+//		return ud.save(u);
 	}
 	
 
