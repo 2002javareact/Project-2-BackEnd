@@ -10,5 +10,5 @@ import com.wildcards.models.Inventory;
 @Repository
 public interface InventoryDao extends JpaRepository<Inventory, Integer>{
 
-	public List<Inventory> findByTypeId(int typeId); 
+	public List<Inventory> findByTypeTypeId(int typeId); 
 }

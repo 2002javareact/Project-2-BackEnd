@@ -33,15 +33,31 @@ public class Inventory {
 	@JsonBackReference
 	private Type type;
 	
-	//@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-	//@JoinColumn(name = "brand", nullable = false, referencedColumnName = "brand_id")
-	//@JsonManagedReference
-	// Change int to Brand
-	private int brand;
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@JoinColumn(name = "brand", nullable = false, referencedColumnName = "brand_id")
+	@JsonManagedReference
+	private Brand brand;
 	
+	@Column
 	private double price;
 	
+	@Column
 	private int stock;
+
+	public Inventory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Inventory(int itemId, String itemDescription, Type type, Brand brand, double price, int stock) {
+		super();
+		this.itemId = itemId;
+		this.itemDescription = itemDescription;
+		this.type = type;
+		this.brand = brand;
+		this.price = price;
+		this.stock = stock;
+	}
 
 	public int getItemId() {
 		return itemId;
@@ -67,11 +83,11 @@ public class Inventory {
 		this.type = type;
 	}
 
-	public int getBrand() {
+	public Brand getBrand() {
 		return brand;
 	}
 
-	public void setBrand(int brand) {
+	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
 
@@ -91,15 +107,11 @@ public class Inventory {
 		this.stock = stock;
 	}
 
-	
-
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + brand;
+		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
 		result = prime * result + ((itemDescription == null) ? 0 : itemDescription.hashCode());
 		result = prime * result + itemId;
 		long temp;
@@ -119,7 +131,10 @@ public class Inventory {
 		if (getClass() != obj.getClass())
 			return false;
 		Inventory other = (Inventory) obj;
-		if (brand != other.brand)
+		if (brand == null) {
+			if (other.brand != null)
+				return false;
+		} else if (!brand.equals(other.brand))
 			return false;
 		if (itemDescription == null) {
 			if (other.itemDescription != null)
@@ -142,25 +157,9 @@ public class Inventory {
 
 	@Override
 	public String toString() {
-		return "Invertory [itemId=" + itemId + ", itemDescription=" + itemDescription + ", type=" + type + ", brand="
+		return "Inventory [itemId=" + itemId + ", itemDescription=" + itemDescription + ", type=" + type + ", brand="
 				+ brand + ", price=" + price + ", stock=" + stock + "]";
 	}
 
-	public Inventory(int itemId, String itemDescription, Type type, int brand, double price, int stock) {
-		super();
-		this.itemId = itemId;
-		this.itemDescription = itemDescription;
-		this.type = type;
-		this.brand = brand;
-		this.price = price;
-		this.stock = stock;
-	}
-
-	public Inventory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 	
 }

@@ -34,6 +34,6 @@ public class InventoryServiceImpl implements InventoryService{
 	@Override
 	public List<Inventory> getByTypeId(int typeId) {
 		// TODO Auto-generated method stub
-		return id.findByTypeId(typeId);
+		return id.findByTypeTypeId(typeId);
 	}
 }
