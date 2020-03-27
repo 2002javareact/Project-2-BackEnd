@@ -12,8 +12,8 @@ public class EmailConfiguration {
 	@Bean
 	public SimpleMailMessage emailTemplate() {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo("djsilentswagg@gmail.com");
-		message.setFrom("ramelhaines25@gmail.com");
+		message.setTo("e@email.com");
+		message.setFrom("djsilentswagg@gmail.com");
 		message.setSubject("Important email");
 		message.setText("FATAL - Application crash. Save your job !!");
 		return message;
