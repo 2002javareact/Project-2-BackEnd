@@ -38,8 +38,13 @@ public class EmailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage(preConfiguredMessage);
         mailMessage.setText(message);
         mailSender.send(mailMessage);
+        
     }
         
+    /**
+     * This method will send a signup confirmation email
+     * */
+    
     public void sendSignUpEmail(String to, String confirmation) {
     	
     	SimpleMailMessage signupMessage = new SimpleMailMessage();
