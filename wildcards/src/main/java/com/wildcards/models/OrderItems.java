@@ -7,12 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-// @Table(name = "order_items")
+@Table(name = "order_items")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class OrderItems {
 
@@ -24,7 +25,7 @@ public class OrderItems {
 
   // have many to one with the other two models (Order and Items)
   @ManyToOne
-  @JoinColumn(name = "Order", referencedColumnName = "order_id")
+  @JoinColumn(name = "Orders", referencedColumnName = "order_id")
   @JsonBackReference
   public Order order;
 
