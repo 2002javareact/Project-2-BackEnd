@@ -31,7 +31,23 @@ public class InventoryServiceImpl implements InventoryService {
 
 	@Override
 	public List<Inventory> getByTypeId(int typeId) {
-		// TODO Auto-generated method stub
-		return id.findByTypeTypeId(typeId);
+		boolean asc = true;
+				if (asc == true) {
+					return id.findByTypeTypeIdOrderByPriceAsc(typeId);
+				}
+				else {
+					return id.findByTypeTypeIdOrderByPriceDesc(typeId);
+				}
+	}
+	
+	@Override
+	public List<Inventory> getByBrandId(int brandId) {
+		boolean asc = true;
+				if (asc == true) {
+					return id.findByBrandBrandIdOrderByPriceAsc(brandId);
+				}
+				else {
+					return id.findByBrandBrandIdOrderByPriceDesc(brandId);
+				}
 	}
 }
