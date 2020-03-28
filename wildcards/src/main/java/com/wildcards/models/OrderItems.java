@@ -38,7 +38,7 @@ public class OrderItems {
   private int quantity;
 
   @Column
-  private int price;
+  private double price;
 
   public OrderItemsId getOrderItemsId() {
     return orderItemsId;
@@ -72,11 +72,11 @@ public class OrderItems {
     this.quantity = quantity;
   }
 
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 
@@ -87,7 +87,9 @@ public class OrderItems {
     result = prime * result + ((item == null) ? 0 : item.hashCode());
     result = prime * result + ((order == null) ? 0 : order.hashCode());
     result = prime * result + ((orderItemsId == null) ? 0 : orderItemsId.hashCode());
-    result = prime * result + price;
+    long temp;
+    temp = Double.doubleToLongBits(price);
+    result = prime * result + (int) (temp ^ (temp >>> 32));
     result = prime * result + quantity;
     return result;
   }
@@ -116,7 +118,7 @@ public class OrderItems {
         return false;
     } else if (!orderItemsId.equals(other.orderItemsId))
       return false;
-    if (price != other.price)
+    if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
       return false;
     if (quantity != other.quantity)
       return false;
@@ -129,15 +131,15 @@ public class OrderItems {
         + ", quantity=" + quantity + "]";
   }
 
-  public OrderItems(OrderItemsId orderItemsId, Order order, Inventory item, int quantity, int price) {
+  public OrderItems() {
+  }
+
+  public OrderItems(OrderItemsId orderItemsId, Order order, Inventory item, int quantity, double price) {
     this.orderItemsId = orderItemsId;
     this.order = order;
     this.item = item;
     this.quantity = quantity;
     this.price = price;
-  }
-
-  public OrderItems() {
   }
 
 }
