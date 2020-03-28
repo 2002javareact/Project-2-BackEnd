@@ -24,7 +24,7 @@ public class OrderItems {
 
   // have many to one with the other two models (Order and Items)
   @ManyToOne
-  @JoinColumn(name = "Order", referencedColumnName = "order_id")
+  @JoinColumn(name = "Orders", referencedColumnName = "order_id")
   @JsonBackReference
   public Order order;
 

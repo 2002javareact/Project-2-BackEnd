@@ -14,17 +14,17 @@ public class Brand {
 				@Id
 				@GeneratedValue(strategy = GenerationType.IDENTITY)
 				@Column(name = "brand_id")
-				private int Brand_id;
+				private int brandId;
 				
 				@Column(name = "brand")
 				private String Brand;
 
-				public int getBrand_id() {
-					return Brand_id;
+				public int getBrandId() {
+					return brandId;
 				}
 
-				public void setBrand_id(int brand_id) {
-					Brand_id = brand_id;
+				public void setBrandId(int brandId) {
+					this.brandId = brandId;
 				}
 
 				public String getBrand() {
@@ -40,7 +40,7 @@ public class Brand {
 					final int prime = 31;
 					int result = 1;
 					result = prime * result + ((Brand == null) ? 0 : Brand.hashCode());
-					result = prime * result + Brand_id;
+					result = prime * result + brandId;
 					return result;
 				}
 
@@ -58,14 +58,20 @@ public class Brand {
 							return false;
 					} else if (!Brand.equals(other.Brand))
 						return false;
-					if (Brand_id != other.Brand_id)
+					if (brandId != other.brandId)
 						return false;
 					return true;
 				}
 
 				@Override
 				public String toString() {
-					return "Brand [Brand_id=" + Brand_id + ", Brand=" + Brand + "]";
+					return "Brand [brandId=" + brandId + ", Brand=" + Brand + "]";
+				}
+
+				public Brand(int brandId, String brand) {
+					super();
+					this.brandId = brandId;
+					Brand = brand;
 				}
 
 				public Brand() {
@@ -73,13 +79,7 @@ public class Brand {
 					// TODO Auto-generated constructor stub
 				}
 
-				public Brand(int brand_id, String brand) {
-					super();
-					Brand_id = brand_id;
-					Brand = brand;
-				}
-
-
+			
 				
 		} 
 

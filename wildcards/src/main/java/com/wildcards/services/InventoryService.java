@@ -11,5 +11,7 @@ public interface InventoryService {
 	public Inventory createNewItem(Inventory i);
 	
 	public List<Inventory> getByTypeId(int typeId);
+	
+	public List<Inventory> getByBrandId(int brandId);
 
 }
