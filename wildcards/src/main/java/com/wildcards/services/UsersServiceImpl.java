@@ -3,6 +3,8 @@ package com.wildcards.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
+	@Transactional
 	public Users updateUsers(Users u) {
 		// TODO Auto-generated method stub
 		Users previousUser = ud.getOne(u.getUserId());
