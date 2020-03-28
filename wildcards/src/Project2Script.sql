@@ -170,3 +170,6 @@ insert into "order_status"(name)
 --select * from "type";
 --select * from address;
 --select * from inventory;
+--select * from order_table
+--inner join order_status on order_status = status_id ;
+--select * from order_status;

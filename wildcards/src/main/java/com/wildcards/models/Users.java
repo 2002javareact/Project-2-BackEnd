@@ -14,47 +14,48 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})// put this on all of your entities
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // put this on all of your entities
 public class Users {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
+	// @OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade =
+	// CascadeType.ALL)
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@OneToMany(mappedBy = "users")
+	@JsonManagedReference
 	private List<Order> userOrders;
-	
-	
+
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	//used to specify the foreign key column
+	// used to specify the foreign key column
 	@JoinColumn(name = "shoppingCart", referencedColumnName = "cart_id")
 	private ShoppingCart shoppingCart;
-	
+
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "address", referencedColumnName = "address_id")
 	private Address address;
-	
+
 	@OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "paymentInfo", referencedColumnName = "paymentInfo_id")
 	private PaymentInfo paymentInfo;
-	
-	
+
 	@Column(unique = true)
 	private String username;
-	
+
 	@Column
 	private String password;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@Column
 	private String email;
 
@@ -216,14 +217,13 @@ public class Users {
 
 	@Override
 	public String toString() {
-		return "Users [userId=" + userId + ", userOrders=" + userOrders + ", shoppingCart=" + shoppingCart
-				+ ", address=" + address + ", paymentInfo=" + paymentInfo + ", username=" + username + ", password="
-				+ password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+		return "Users [userId=" + userId + ", userOrders=" + userOrders + ", shoppingCart=" + shoppingCart + ", address="
+				+ address + ", paymentInfo=" + paymentInfo + ", username=" + username + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
-	public Users(int userId, List<Order> userOrders, ShoppingCart shoppingCart, Address address,
-			PaymentInfo paymentInfo, String username, String password, String firstName, String lastName,
-			String email) {
+	public Users(int userId, List<Order> userOrders, ShoppingCart shoppingCart, Address address, PaymentInfo paymentInfo,
+			String username, String password, String firstName, String lastName, String email) {
 		super();
 		this.userId = userId;
 		this.userOrders = userOrders;
@@ -241,8 +241,5 @@ public class Users {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
-	
 
 }
