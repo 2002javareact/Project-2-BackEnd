@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Embeddable
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ShoppingCartItemsId implements Serializable{
 	
 	private int cartId;

@@ -3,6 +3,7 @@ package com.wildcards.models;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -10,7 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "shopping_cart_items")
@@ -22,13 +27,13 @@ public class ShoppingCartItems {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private ShoppingCartItemsId shoppingCartId;
 	
-	@ManyToOne
-	@JsonBackReference
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JsonBackReference(value="cart")
 	@JoinColumn(name = "ShoppingCart", referencedColumnName = "cart_id")
 	public ShoppingCart shoppingCart;
 	
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="item")
 	@JoinColumn(name = "item", referencedColumnName = "item_id")
 	private Inventory item;
 	
