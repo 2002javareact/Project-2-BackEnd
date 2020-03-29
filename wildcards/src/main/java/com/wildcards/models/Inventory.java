@@ -10,11 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="itemId")
 public class Inventory {
 
 	@Id
@@ -27,12 +30,13 @@ public class Inventory {
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "type", nullable = false, referencedColumnName = "type_id")
-	@JsonBackReference
+//	@JsonBackReference
+//	@JsonManagedReference
 	private Type type;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "brand", nullable = false, referencedColumnName = "brand_id")
-	@JsonManagedReference
+//	@JsonManagedReference
 	private Brand brand;
 
 	@Column

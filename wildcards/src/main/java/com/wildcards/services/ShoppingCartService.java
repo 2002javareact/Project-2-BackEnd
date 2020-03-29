@@ -9,4 +9,6 @@ public interface ShoppingCartService {
 	
 	public List<ShoppingCartItems>getAllItems();
 	
+	public ShoppingCartItems createNewItem(ShoppingCartItems sci);
+	
 }
