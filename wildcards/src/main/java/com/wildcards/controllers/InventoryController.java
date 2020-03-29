@@ -54,4 +54,19 @@ public class InventoryController {
 		return new ResponseEntity(is.getByTypeId(typeId), HttpStatus.OK);
 	}
 
+	
+	@GetMapping("{brandId}")
+	public ResponseEntity<List<Inventory>> getByBrandId(@PathVariable int brandId) {
+		// HttpServletRequest req = ((ServletRequestAttributes)
+		// RequestContextHolder.getRequestAttributes()).getRequest();
+		List<Inventory> i = is.getByBrandId(brandId);
+		// add an object to the session
+		// req.getSession().setAttribute("inventory", i);
+		if (brandId == 0) {
+			return new ResponseEntity("TypeBrand must not be 0", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(is.getByBrandId(brandId), HttpStatus.OK);
+	}
+	
+	
 }

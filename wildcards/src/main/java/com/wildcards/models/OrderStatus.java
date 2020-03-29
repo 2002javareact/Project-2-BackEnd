@@ -20,7 +20,7 @@ public class OrderStatus {
 	private int statusId;
 
 	@Column
-	String name;
+	private String name;
 
 	public OrderStatus() {
 		super();

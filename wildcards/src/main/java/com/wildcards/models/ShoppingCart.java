@@ -15,24 +15,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class ShoppingCart {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cart_id")
 	private int cartId;
-	
+
 	@OneToOne(mappedBy = "shoppingCart", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JsonBackReference
 	private Users u;
-	
-	
+
 	@Column
 	private int totalItems;
-	
+
 	@Column
-	private int totalPrice;
+	private double totalPrice;
 
 	public int getCartId() {
 		return cartId;
@@ -58,11 +57,11 @@ public class ShoppingCart {
 		this.totalItems = totalItems;
 	}
 
-	public int getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -72,7 +71,9 @@ public class ShoppingCart {
 		int result = 1;
 		result = prime * result + cartId;
 		result = prime * result + totalItems;
-		result = prime * result + totalPrice;
+		long temp;
+		temp = Double.doubleToLongBits(totalPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((u == null) ? 0 : u.hashCode());
 		return result;
 	}
@@ -90,7 +91,7 @@ public class ShoppingCart {
 			return false;
 		if (totalItems != other.totalItems)
 			return false;
-		if (totalPrice != other.totalPrice)
+		if (Double.doubleToLongBits(totalPrice) != Double.doubleToLongBits(other.totalPrice))
 			return false;
 		if (u == null) {
 			if (other.u != null)
@@ -102,25 +103,18 @@ public class ShoppingCart {
 
 	@Override
 	public String toString() {
-		return "ShoppingCart [cartId=" + cartId + ", u=" + u + ", totalItems=" + totalItems + ", totalPrice="
-				+ totalPrice + "]";
+		return "ShoppingCart [cartId=" + cartId + ", totalItems=" + totalItems + ", totalPrice=" + totalPrice + ", u=" + u
+				+ "]";
 	}
 
-	public ShoppingCart(int cartId, Users u, int totalItems, int totalPrice) {
-		super();
+	public ShoppingCart() {
+	}
+
+	public ShoppingCart(int cartId, Users u, int totalItems, double totalPrice) {
 		this.cartId = cartId;
 		this.u = u;
 		this.totalItems = totalItems;
 		this.totalPrice = totalPrice;
 	}
-
-	public ShoppingCart() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
 
 }

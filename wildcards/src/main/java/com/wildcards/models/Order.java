@@ -1,6 +1,5 @@
 package com.wildcards.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //Order
@@ -30,15 +30,15 @@ public class Order {
 	private int orderId;
 
 	// foreign key for user table, FK
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "users", referencedColumnName = "user_id")
-	// @JsonBackReference
+	@JsonBackReference
 	private Users users;
 
 	@Column(name = "total_price")
 	private int totalPrice;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_status", referencedColumnName = "status_id")
 	private OrderStatus orderStatus;
 
